@@ -29,4 +29,6 @@ def collect_tcs_data():
 
 if __name__ == "__main__":
     collect_tcs_data()
+    df = df[['Date', 'Open', 'High', 'Low', 'Close', 'Volume']]
+
 
