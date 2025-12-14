@@ -85,6 +85,17 @@ def preprocess_tcs_data():
     plt.savefig("results/plots/price_distribution_after.png")
     plt.close()
 
+    # -------------------------------
+# BOXPLOT FOR OUTLIER DETECTION
+# -------------------------------
+plt.figure(figsize=(8,4))
+plt.boxplot(df['price'])
+plt.title("Boxplot of TCS Stock Prices")
+plt.ylabel("Price")
+plt.savefig("results/plots/price_boxplot.png")
+plt.close()
+
+
     # Step 6: Save processed data
     df.to_csv("data/processed/TCS_cleaned.csv", index=False)
 
