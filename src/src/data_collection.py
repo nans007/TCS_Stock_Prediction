@@ -2,15 +2,18 @@ import yfinance as yf
 import pandas as pd
 import os
 
+
 def collect_tcs_data():
     """
     Collect last 5 years of TCS stock price data from Yahoo Finance
+    and save it as raw CSV.
     """
 
-    # Create raw data directory if it doesn't exist
+    # Create raw data directory
     os.makedirs("data/raw", exist_ok=True)
 
-    ticker = "TCS.NS"  # TCS stock on NSE
+    # TCS ticker on NSE
+    ticker = "TCS.NS"
 
     # Download last 5 years of daily data
     df = yf.download(
@@ -19,11 +22,13 @@ def collect_tcs_data():
         interval="1d"
     )
 
+    # Reset index so Date becomes a column
     df.reset_index(inplace=True)
 
-    # ✅ KEEP ONLY REQUIRED COLUMNS (MUST BE HERE)
-    df = df[['Date', 'Open', 'High', 'Low', 'Close', 'Volume']]
+    # Keep only required columns
+    df = df[["Date", "Open", "High", "Low", "Close", "Volume"]]
 
+    # Save raw data
     df.to_csv("data/raw/TCS_raw.csv", index=False)
 
     print("5 years of TCS stock data saved to data/raw/TCS_raw.csv")
@@ -31,4 +36,5 @@ def collect_tcs_data():
 
 if __name__ == "__main__":
     collect_tcs_data()
+
 
