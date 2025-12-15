@@ -19,16 +19,16 @@ def collect_tcs_data():
         interval="1d"
     )
 
-    # Reset index to make Date a column
-    df.reset_index(inplace=True)
+   df.reset_index(inplace=True)
 
-    # Save raw data
+    # ✅ KEEP ONLY REQUIRED COLUMNS (MUST BE HERE)
+    df = df[['Date', 'Open', 'High', 'Low', 'Close', 'Volume']]
+
     df.to_csv("data/raw/TCS_raw.csv", index=False)
 
     print("5 years of TCS stock data saved to data/raw/TCS_raw.csv")
 
+
 if __name__ == "__main__":
     collect_tcs_data()
-    df = df[['Date', 'Open', 'High', 'Low', 'Close', 'Volume']]
-
 
