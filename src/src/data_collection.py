@@ -19,7 +19,7 @@ def collect_tcs_data():
         interval="1d"
     )
 
-   df.reset_index(inplace=True)
+    df.reset_index(inplace=True)
 
     # ✅ KEEP ONLY REQUIRED COLUMNS (MUST BE HERE)
     df = df[['Date', 'Open', 'High', 'Low', 'Close', 'Volume']]
