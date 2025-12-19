@@ -29,7 +29,6 @@ df["MA50"] = df["Close"].rolling(window=50).mean()
     # 1. Missing Value Analysis
     # -----------------------------
     missing = df.isnull().sum()
-
     plt.figure(figsize=(8, 4))
     missing.plot(kind="bar")
     plt.title("Missing Values per Column")
