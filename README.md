@@ -20,40 +20,42 @@ AI-based market trend analysis and stock price prediction for TCS
    -Train-test split applied to preserve time-series order  
    - Model evaluated using actual vs predicted price trends
   
-5.  Results & Insights
+## RESULTS AND INSIGHTS
 
 - The linear regression model successfully captures the overall long-term trend of TCS stock prices.
 - Predictions closely follow the general movement of the actual closing prices but fail to capture short-term fluctuations.
 - This behavior is expected, as stock markets are influenced by sudden external factors such as news, macroeconomic events, and investor sentiment.
 - The model performs better for trend analysis rather than precise short-term price forecasting.
 
-6.Limitations
+## LIMITATIONS
 
 - Linear regression assumes a linear relationship between time and price.
 - The model does not account for market volatility, news sentiment, or sudden price shocks.
 - Stock prices are inherently noisy and influenced by factors beyond historical data.
 
-7. Future Scope
+## FUTURE SCOPE
 
 - Use advanced time-series models such as LSTM or GRU for better sequence learning.
 - Integrate technical indicators like RSI, MACD, and Bollinger Bands.
 - Incorporate sentiment analysis using financial news and social media data.
 - Extend the model to predict short-term price movements.
 
-  Project Structure
+## Project Structure
 
+```text
 data/
- ├── raw/                  # Raw stock price data  
- ├── processed/            # Cleaned and processed data  
+ ├── raw/                # Raw stock price data
+ ├── processed/          # Cleaned and processed data
 
 src/
- ├── data_collection.py    # Fetches stock data  
- ├── eda.py                # Exploratory data analysis  
- ├── preprocessing.py      # Data cleaning and preparation  
- ├── modeling.py           # ML model training and prediction  
+ ├── data_collection.py  # Fetches stock data
+ ├── eda.py              # Exploratory data analysis
+ ├── preprocessing.py   # Data cleaning and preparation
+ ├── modeling.py        # ML model training and prediction
 
 results/
- ├── plots/                # Generated visualizations and results
+ ├── plots/              # Generated visualizations and results
+
 
 
 
