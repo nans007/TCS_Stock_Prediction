@@ -17,6 +17,13 @@ def run_eda():
 
     # Load raw data
     df = pd.read_csv("data/raw/TCS_raw.csv")
+    # Convert Date column to datetime
+df["Date"] = pd.to_datetime(df["Date"])
+
+# Moving Averages
+df["MA20"] = df["Close"].rolling(window=20).mean()
+df["MA50"] = df["Close"].rolling(window=50).mean()
+
 
     # -----------------------------
     # 1. Missing Value Analysis
@@ -59,7 +66,11 @@ def run_eda():
     df["Date"] = pd.to_datetime(df["Date"])
 
     plt.figure(figsize=(10, 4))
-    plt.plot(df["Date"], df["Close"])
+    plt.plot(df["Date"], df["Close"], label="Close Price")
+    plt.plot(df["Date"], df["MA20"], label="20-day MA")
+    plt.plot(df["Date"], df["MA50"], label="50-day MA")
+    plt.legend()
+
     plt.title("TCS Stock Price Trend (5 Years)")
     plt.xlabel("Date")
     plt.ylabel("Close Price")
