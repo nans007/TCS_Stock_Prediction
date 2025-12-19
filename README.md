@@ -43,17 +43,17 @@ AI-based market trend analysis and stock price prediction for TCS
   Project Structure
 
 data/
- ├── raw/                # Raw stock price data  
- ├── processed/          # Cleaned and processed data  
+ ├── raw/                  # Raw stock price data  
+ ├── processed/            # Cleaned and processed data  
 
 src/
- ├── data_collection.py  # Fetches stock data  
- ├── eda.py              # Exploratory data analysis  
- ├── preprocessing.py    # Data cleaning and preparation  
- ├── modeling.py         # ML model training and prediction  
+ ├── data_collection.py    # Fetches stock data  
+ ├── eda.py                # Exploratory data analysis  
+ ├── preprocessing.py      # Data cleaning and preparation  
+ ├── modeling.py           # ML model training and prediction  
 
 results/
- ├── plots/              # Generated visualizations and results
+ ├── plots/                # Generated visualizations and results
 
 
 
