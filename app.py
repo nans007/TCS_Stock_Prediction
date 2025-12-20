@@ -1,11 +1,19 @@
 import streamlit as st
-from model import predicted_price
+from model_lr import lr_predicted_2026
+from model_rf import rf_predicted_2026
+from model_lstm import lstm_predicted_2026
 
-st.title("Stock Price Prediction")
-st.write("This model predicts the stock price based on historical data.")
+st.title("TCS Stock Price Prediction (2026)")
 
-st.subheader(
-    f"The predicted stock price for Reliance Industries is: ₹{predicted_price:.2f}"
+st.write(
+    "Models trained on the last five years of TCS stock data (2021–2025)."
 )
 
-st.caption("Prediction based on Linear Regression using historical closing prices.")
+st.subheader(f"Linear Regression Prediction: ₹{lr_predicted_2026:.2f}")
+st.subheader(f"Random Forest Prediction: ₹{rf_predicted_2026:.2f}")
+st.subheader(f"LSTM Prediction: ₹{lstm_predicted_2026:.2f}")
+
+st.caption(
+    "Comparison of traditional ML and deep learning models for stock price prediction."
+)
+
