@@ -6,6 +6,8 @@ def run_eda():
     os.makedirs("results/plots", exist_ok=True)
 
     df = pd.read_csv("data/raw/TCS_raw.csv")
+    df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
+    df = df.dropna(subset=["Close"])
     df["Date"] = pd.to_datetime(df["Date"])
 
     # Missing values
