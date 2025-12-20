@@ -5,104 +5,85 @@ import os
 
 def preprocess_tcs_data():
     """
-    Advanced preprocessing pipeline:
-    - Missing value analysis
-    - Visualization of missing values
-    - Duplicate removal
+    Preprocessing pipeline for TCS stock data:
+    - Load raw data
+    - Clean and convert data types
+    - Handle missing values
     - Feature engineering
-    - Normalization
+    - Scaling
+    - Save processed data
     """
 
-    # Create plots directory if not exists
+    # Create required directories
+    os.makedirs("data/processed", exist_ok=True)
     os.makedirs("results/plots", exist_ok=True)
 
-    # Step 1: Load raw data
+    # Load raw data
     df = pd.read_csv("data/raw/TCS_raw.csv")
 
-    # Step 2: Select required columns
-    df = df[['Date', 'Close']]
-    df.columns = ['date', 'price']
+    # Keep required columns
+    df = df[["Date", "Close"]]
+    df.columns = ["date", "price"]
 
-    # Step 3: Convert date column
-    df['date'] = pd.to_datetime(df['date'])
+    # Convert data types
+    df["date"] = pd.to_datetime(df["date"])
+    df["price"] = pd.to_numeric(df["price"], errors="coerce")
 
-    # -------------------------------
-    # MISSING VALUE ANALYSIS
-    # -------------------------------
-
-    missing_counts = df.isnull().sum()
-
-    print("Missing values per column:")
-    print(missing_counts)
-
-    # Step 4: Visualize missing values
-    plt.figure(figsize=(6,4))
-    missing_counts.plot(kind='bar')
-    plt.title("Missing Values Before Cleaning")
-    plt.ylabel("Count")
-    plt.savefig("results/plots/missing_values_before.png")
-    plt.close()
-
-    # Step 5: Handle missing values
-    df.fillna(method='ffill', inplace=True)
-
-    # -------------------------------
-    # DUPLICATE CHECK
-    # -------------------------------
-
-    duplicates = df.duplicated().sum()
-    print(f"Duplicate rows found: {duplicates}")
-
-    df.drop_duplicates(inplace=True)
-
-    # -------------------------------
-    # FEATURE ENGINEERING
-    # -------------------------------
-
-    df['returns'] = df['price'].pct_change()
+    # Drop missing values
     df.dropna(inplace=True)
 
-    # -------------------------------
-    # NORMALIZATION (DATA PREPARATION)
-    # -------------------------------
+    # Sort by date
+    df.sort_values("date", inplace=True)
 
+    # Feature engineering: daily returns
+    df["returns"] = df["price"].pct_change()
+    df.dropna(inplace=True)
+
+    # Scaling
     scaler = MinMaxScaler()
-    df[['price_scaled']] = scaler.fit_transform(df[['price']])
+    df["price_scaled"] = scaler.fit_transform(df[["price"]])
 
     # -------------------------------
-    # DISTRIBUTION VISUALIZATION
+    # Visualizations
     # -------------------------------
 
-    plt.figure(figsize=(8,4))
-    plt.hist(df['price'], bins=50)
+    # Price distribution before scaling
+    plt.figure(figsize=(8, 4))
+    plt.hist(df["price"], bins=50)
     plt.title("Price Distribution (Before Scaling)")
+    plt.xlabel("Price")
+    plt.ylabel("Frequency")
+    plt.tight_layout()
     plt.savefig("results/plots/price_distribution_before.png")
     plt.close()
 
-    plt.figure(figsize=(8,4))
-    plt.hist(df['price_scaled'], bins=50)
+    # Price distribution after scaling
+    plt.figure(figsize=(8, 4))
+    plt.hist(df["price_scaled"], bins=50)
     plt.title("Price Distribution (After Scaling)")
+    plt.xlabel("Scaled Price")
+    plt.ylabel("Frequency")
+    plt.tight_layout()
     plt.savefig("results/plots/price_distribution_after.png")
     plt.close()
 
-    # -------------------------------
-# BOXPLOT FOR OUTLIER DETECTION
-# -------------------------------
-plt.figure(figsize=(8,4))
-plt.boxplot(df['price'])
-plt.title("Boxplot of TCS Stock Prices")
-plt.ylabel("Price")
-plt.savefig("results/plots/price_boxplot.png")
-plt.close()
+    # Boxplot for outlier detection
+    plt.figure(figsize=(8, 4))
+    plt.boxplot(df["price"].values.astype(float), vert=False)
+    plt.title("Boxplot of TCS Stock Prices")
+    plt.xlabel("Price")
+    plt.tight_layout()
+    plt.savefig("results/plots/price_boxplot.png")
+    plt.close()
 
-
-    # Step 6: Save processed data
-    df.to_csv("data/processed/TCS_cleaned.csv", index=False)
+    # Save processed data
+    df.to_csv("data/processed/TCS_processed.csv", index=False)
 
     print("Preprocessing completed successfully.")
-    print("Cleaned data saved to data/processed/")
+    print("Processed data saved to data/processed/TCS_processed.csv")
 
 if __name__ == "__main__":
     preprocess_tcs_data()
+
 
 
