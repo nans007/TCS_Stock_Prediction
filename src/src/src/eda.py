@@ -6,9 +6,13 @@ def run_eda():
     os.makedirs("results/plots", exist_ok=True)
 
     df = pd.read_csv("data/raw/TCS_raw.csv")
-    df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
-    df = df.dropna(subset=["Close"])
+
+    # Ensure correct dtypes
     df["Date"] = pd.to_datetime(df["Date"])
+    df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
+
+    # Drop rows where Close could not be converted
+    df = df.dropna(subset=["Close"])
 
     # Missing values
     missing = df.isnull().sum()
@@ -17,9 +21,9 @@ def run_eda():
     plt.savefig("results/plots/missing_values.png")
     plt.close()
 
-    # Boxplot
+    # Boxplot (SAFE)
     plt.figure()
-    plt.boxplot(df["Close"], vert=False)
+    plt.boxplot(df["Close"].values.astype(float), vert=False)
     plt.savefig("results/plots/price_boxplot.png")
     plt.close()
 
