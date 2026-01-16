@@ -1,75 +1,145 @@
-# TCS_Stock_Prediction
-AI-based market trend analysis and stock price prediction for TCS
-## Project Pipeline
+##AI-Based Stock Trend Analysis for TCS
+#Project Overview
 
-1. Data Collection  
-   - Collects last 5 years of TCS stock price data using Yahoo Finance (NSE: TCS.NS)
+This project focuses on analyzing and predicting stock price trends of Tata Consultancy Services (TCS) using Machine Learning techniques. It combines data analysis, model comparison, and an interactive application to demonstrate both analytical understanding and practical deployment of AI-based trend analysis.
 
-2. Exploratory Data Analysis (EDA)  
-   - Visualizes price trends  
-   - Detects missing values  
-   - Identifies outliers using boxplots  
+The project is developed under the TCS AI Track – Trend Analysis.
 
-3. Data Preprocessing  
-   - Cleans raw stock data  
-   - Prepares features for modeling  
+#Problem Definition & Objective
 
-4. Modeling 
-   - Stock price prediction using ML models
-   - Linear Regression model used to predict TCS closing price  
-   -Train-test split applied to preserve time-series order  
-   - Model evaluated using actual vs predicted price trends
-     
-     ## User Interface (UI)
+Stock market prices are highly dynamic and influenced by multiple economic and external factors, making it difficult to identify meaningful trends using raw historical data alone.
 
-A web-based UI was developed using Streamlit to demonstrate model predictions
-in an interactive manner.
+##Objectives
 
-Features:
-- Model selection (Linear Regression / Random Forest)
-- Visual comparison of predicted vs actual prices
-- Trend visualization through charts
+-Analyze historical stock price data of TCS
 
-The UI is implemented in `app.py` and related source files.
-This interface will be showcased as part of the next submission level.
+-Identify long-term trends and patterns
 
-  
-## RESULTS AND INSIGHTS
+-Compare different Machine Learning models for prediction
 
-- The linear regression model successfully captures the overall long-term trend of TCS stock prices.
-- Predictions closely follow the general movement of the actual closing prices but fail to capture short-term fluctuations.
-- This behavior is expected, as stock markets are influenced by sudden external factors such as news, macroeconomic events, and investor sentiment.
-- The model performs better for trend analysis rather than precise short-term price forecasting.
+-Demonstrate real-world applicability through an interactive system
 
-## LIMITATIONS
+#Dataset
 
-- Linear regression assumes a linear relationship between time and price.
-- The model does not account for market volatility, news sentiment, or sudden price shocks.
-- Stock prices are inherently noisy and influenced by factors beyond historical data.
+-Source: Yahoo Finance API
 
-## FUTURE SCOPE
+-Stock: TCS (TCS.NS)
 
-- Use advanced time-series models such as LSTM or GRU for better sequence learning.
-- Integrate technical indicators like RSI, MACD, and Bollinger Bands.
-- Incorporate sentiment analysis using financial news and social media data.
-- Extend the model to predict short-term price movements.
+-Time Period: 10 years of historical data
 
-## Project Structure
+-Features: Open, High, Low, Close, Volume
 
-```text
-data/
- ├── raw/                # Raw stock price data
- ├── processed/          # Cleaned and processed data
+-Primary Feature Used: Closing Price
 
-src/
- ├── data_collection.py  # Fetches stock data
- ├── eda.py              # Exploratory data analysis
- ├── preprocessing.py   # Data cleaning and preparation
- ├── modeling.py        # ML model training and prediction
+Missing values were handled using forward-fill and data cleaning techniques to ensure consistency and reliability.
 
-results/
- ├── plots/              # Generated visualizations and results
+##Models Implemented
 
+Two Machine Learning models were implemented and compared:
+
+#Linear Regression
+
+-Used as a baseline model
+
+-Effective for capturing long-term linear trends
+
+-Limited in modeling short-term price fluctuations
+
+#Random Forest Regressor
+
+-Ensemble-based model
+
+-Captures non-linear relationships in stock price movements
+
+-Demonstrates significantly better predictive accuracy
+
+##Methodology
+
+#The workflow of the system follows a structured pipeline:
+
+Data Collection
+      ↓
+Data Cleaning & Preparation
+      ↓
+Feature Engineering (Time Index)
+      ↓
+Model Training (Linear Regression / Random Forest)
+      ↓
+Prediction & Evaluation
+      ↓
+Visualization & User Interaction
+
+##Evaluation & Analysis
+
+-Model performance was analyzed using quantitative metrics and visual comparison.
+
+-Linear Regression captures the overall trend but shows higher error due to its linear assumptions.
+
+-Random Forest achieves lower prediction error by learning complex, non-linear patterns.
+
+-Visual comparison of actual vs predicted prices highlights the strengths and limitations of each model.
+
+-In the interactive application, a train–test evaluation was performed using historical test data from 2018–2024, and metrics such as Mean Absolute Error (MAE) and accuracy were computed. Random Forest consistently outperformed Linear Regression.
+
+##Key Insight:
+Linear Regression is suitable for baseline trend analysis, while Random Forest provides more accurate predictions for real-world stock price behavior.
+
+##User Interface
+
+An interactive user interface was developed to demonstrate the practical application of the trained models.
+
+##Key Features
+
+-Model selection and comparison
+
+-Stock price prediction
+
+-Performance metrics display
+
+-Visual comparison of actual and predicted prices
+
+-The interface allows users to interact with the system and observe how different models behave under the same data conditions.
+
+##Results & Insights
+
+-Random Forest shows superior performance in modeling stock price movements.
+
+-Linear Regression remains useful for understanding long-term trends.
+
+-Combining analytical modeling with an interactive system provides a comprehensive view of both model behavior and usability.
+
+-This project is intended for educational and analytical purposes only and does not constitute financial advice.
+
+##Project Structure
+├── TCS_AI_Trend_Analysis.ipynb   # Main analysis notebook
+├── app.py                       # Interactive application
+├── src/                         # Model and preprocessing modules
+├── data/                        # Dataset (CSV)
+├── docs/                        # Screenshots / documentation
+├── results/                     # Outputs and visualizations
+└── README.md
+
+##Ethical Considerations
+
+-Stock market predictions are inherently uncertain and influenced by external factors.
+
+-Historical data may not reflect future market behavior.
+
+-Responsible use of AI is essential to avoid misleading conclusions.
+
+-Conclusion & Future Scope
+
+-This project demonstrates an end-to-end AI-based trend analysis system, integrating data analysis with practical application.
+
+##Future enhancements may include:
+
+-Time-series cross-validation
+
+-Incorporation of technical indicators
+
+-Deep learning models such as LSTM
+
+-Real-time data integration
 
 
 
