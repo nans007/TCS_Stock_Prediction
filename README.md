@@ -44,7 +44,9 @@ Missing values were handled using forward-fill and data cleaning techniques to e
 ---
 
 ## Methodology
+
 The workflow of the system follows a structured pipeline:
+
 Data Collection
 ↓
 Data Cleaning & Preparation
