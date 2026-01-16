@@ -19,6 +19,20 @@ AI-based market trend analysis and stock price prediction for TCS
    - Linear Regression model used to predict TCS closing price  
    -Train-test split applied to preserve time-series order  
    - Model evaluated using actual vs predicted price trends
+     
+     ## User Interface (UI)
+
+A web-based UI was developed using Streamlit to demonstrate model predictions
+in an interactive manner.
+
+Features:
+- Model selection (Linear Regression / Random Forest)
+- Visual comparison of predicted vs actual prices
+- Trend visualization through charts
+
+The UI is implemented in `app.py` and related source files.
+This interface will be showcased as part of the next submission level.
+
   
 ## RESULTS AND INSIGHTS
 
