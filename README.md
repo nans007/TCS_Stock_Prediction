@@ -98,6 +98,7 @@ The interface allows users to interact with the system and observe how different
 ---
 
 ## Project Structure
+
 ├── TCS_AI_Trend_Analysis.ipynb # Main analysis notebook
 ├── app.py # Interactive application
 ├── src/ # Model and preprocessing modules
